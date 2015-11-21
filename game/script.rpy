@@ -26,37 +26,34 @@ label splashscreen:
 
 # The game starts here.
 label start:
+ #   $ pov_name="temp"
     show logo with Pause (1.5)
     scene black with dissolve
     show text " Finally Weekend! \n\n Unfortunately u can't sleep anymore \n\n Time to get up " with Pause(4.5)
-    scene black with dissolve
-    jump askname
+    call leavebed
+    call stairs
+    call answerdoor
+    return
+
+label leavebed:
+    return
+   
+label stairs:
     return
 
 label answerdoor:
     menu:
         "open the door":
-            jump answerpostman
+            call getpackage
         "ignore it":
-            jump sleepyhead
+            call soory
     return
-    
-label askname:
-# The phrase in the brackets is the text that the game will display to prompt 
-# the player to enter the name they've chosen.
-    $ pov_name = renpy.input("What is your name, Magical Boy?")
-    $ pov_name = pov_name.strip()
-    
-    if pov_name == "":
-        $ pov_name="Michael"
-
-# Now the other characters in the game can greet the player.
-    pov avatar0 "test"
-    postman "Pleased to meet you, [pov_name]!"
 
 label getpackage:
-    show logo
-    pov "something something"
-    pov avatar0 "now the avatar0 should show up"
-    postman "well"
-    pov "test"
+    postman "Hello, here´s your Mail. Sign this please."
+    call askname
+    return
+    
+label sorry:
+    "soory, this path isnt finished yet"
+    return
