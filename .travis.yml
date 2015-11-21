@@ -10,5 +10,5 @@ install:
   - mv renpy-6.99.7-sdk renpy
   - cd renpy
 # command to run tests
-script: ./renpy.sh "../Dangerous_Fantasies/" lint && ./renpy.sh launcher distribute "../Dangerous_Fantasies/"
+script: ./renpy.sh "../Dangerous_Fantasies/" lint
 
