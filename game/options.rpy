@@ -72,13 +72,13 @@ init -1 python hide:
         ## beginning with '#', or an image filename. The latter
         ## should take up the full height and width of the screen.
         #mm_root = "#D0B4BA",
-        mm_root ="images/bg logo.png",
+        mm_root ="images/logo.png",
         
         ## The background of the game menu. This can be a color
         ## beginning with '#', or an image filename. The latter
         ## should take up the full height and width of the screen.
         #gm_root = "#D0B4BA",
-        gm_root ="images/bg logo.png",
+        gm_root ="images/logo.png",
         
         ## If this is True, the in-game window is rounded. If False,
         ## the in-game window is square.
@@ -111,7 +111,7 @@ init -1 python hide:
     ## Padding is space inside the window, where the background is
     ## drawn.
 
-    style.window.left_padding = 128
+    style.window.left_padding = 150
     # style.window.right_padding = 6
     # style.window.top_padding = 6
     # style.window.bottom_padding = 6
