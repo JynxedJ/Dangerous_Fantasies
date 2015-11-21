@@ -4,12 +4,12 @@
 # eg. image eileen happy = "eileen_happy.png"
 
 # Declare characters used by this game.
-define player = Character('Protagonist', image="player", color="#c8ffc8")
-define player2 = Character('Protagonist', image="player", color="#000000")
+define pov = DynamicCharacter("pov_name", image="pov", color="#D373CA")
+define postman = Character('Protagonist', image="player", color="#c8ffc8")
 
 image logo = "logo.png"
 
-image side player avatar = "playeravatar.png"
+image side pov avatar0 = "avatar0.png"
 
 init:
     image black = Solid((0, 0, 0, 255))
@@ -21,62 +21,18 @@ init:
 label splashscreen:
     show logo
     with dissolve
-    with Pause(3)
+    with Pause(5)
     return    
 
 # The game starts here.
 label start:
-    show logo with Pause (0.5)
+    show logo with Pause (1.5)
     scene black with dissolve
     show text " Finally Weekend! \n\n Unfortunately u can't sleep anymore \n\n Time to get up " with Pause(4.5)
     scene black with dissolve
-
-    menu:
-        "Scratch between the legs":
-            jump malestart
-        "untangle hair":
-            jump femalestart
-    return
-
-label malestart:
-    player avatar "You've created a new Ren'Py game."
-
-    player "Once you add a story, pictures, and music, you can release it to the world!"
-
-    return
-
-label femalestart:
-    "girly boy huh"
     jump askname
     return
-    
-    
-label askname:
-# The phrase in the brackets is the text that the game will display to prompt 
-# the player to enter the name they've chosen.
 
-    $ player_name = renpy.input("What is your name, Magical Boy?")
-
-    $ player_name = player_name.strip()
-# The .strip() instruction removes any extra spaces the player 
-# may have typed by accident.
-
-#  If the player can't be bothered to choose a name, then we
-#  choose a suitable one for them:
-    if player_name == "":
-        $ player_name="Michael"
-
-# And get a nostalgic sigh from Seasons of Sakura fans!
-    
-# Now the other characters in the game can greet the player.
-  
-    player2 "Pleased to meet you, %(player_name)s!"
-    return
-
-    
-    
-    
-    
 label answerdoor:
     menu:
         "open the door":
@@ -84,3 +40,23 @@ label answerdoor:
         "ignore it":
             jump sleepyhead
     return
+    
+label askname:
+# The phrase in the brackets is the text that the game will display to prompt 
+# the player to enter the name they've chosen.
+    $ pov_name = renpy.input("What is your name, Magical Boy?")
+    $ pov_name = pov_name.strip()
+    
+    if pov_name == "":
+        $ pov_name="Michael"
+
+# Now the other characters in the game can greet the player.
+    pov avatar0 "test"
+    postman "Pleased to meet you, [pov_name]!"
+
+label getpackage:
+    show logo
+    pov "something something"
+    pov avatar0 "now the avatar0 should show up"
+    postman "well"
+    pov "test"

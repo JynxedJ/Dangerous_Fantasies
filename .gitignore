@@ -67,6 +67,7 @@ tmp/
 game/saves/
 game/cache/
 game/assets/
+game/sounds/
 game/images/*.xcf
 game/images/playeravatar.png
 
