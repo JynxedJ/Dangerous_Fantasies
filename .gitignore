@@ -55,3 +55,28 @@ docs/_build/
 
 # PyBuilder
 target/
+
+
+
+
+#game specific
+
+*.txt
+
+tmp/
+game/saves/
+game/cache/
+game/assets/
+game/images/*.xcf
+game/images/playeravatar.png
+
+game/*.bak
+game/*.rpyb
+game/*.rpyc
+game/*.ico
+game/*.jpg
+game/*.jpeg
+game/*.png
+game/*.mp3
+game/*.ogg
+game/*.xcf
