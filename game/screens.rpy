@@ -559,3 +559,15 @@ init -2:
         selected_hover_color "#cc0"
         insensitive_color "#4448"
 
+##################################################
+#           DISABLE ALL INPUT
+#
+#  activate using:     show screen noinput()
+#  deactivate with:    hide screen noinput
+screen noinput():
+    #Dismiss keys
+    key "mouseup_1" action NullAction()
+    key "K_RETURN" action NullAction()
+    key "K_SPACE" action NullAction()
+    key "K_KP_ENTER" action NullAction()
+    key "joy_dismiss" action NullAction()  
