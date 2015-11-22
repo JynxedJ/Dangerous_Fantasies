@@ -24,11 +24,12 @@ init -1 python hide:
     ## running in a window.
 
     config.window_title = u"Dangerous_Fantasy"
-
+    config.window_icon = "icon.png"
+    
     # These control the name and version of the game, that are reported
     # with tracebacks and other debugging logs.
     config.name = "Dangerous_Fantasy"
-    config.version = "0.0"
+    config.version = "0.1"
 
     #########################################
     # Themes
@@ -151,7 +152,7 @@ init -1 python hide:
 
     ## The default size of text.
 
-    style.default.size = 18
+    style.default.size = 22
 
     ## Note that these only change the size of some of the text. Other
     ## buttons have their own styles.

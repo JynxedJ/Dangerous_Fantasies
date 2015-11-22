@@ -69,6 +69,7 @@ game/cache/
 game/assets/
 game/sounds/
 game/images/
+game/temp/
 game/images/originale/
 
 game/*.bak

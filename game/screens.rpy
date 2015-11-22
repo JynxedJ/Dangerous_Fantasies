@@ -195,6 +195,8 @@ screen main_menu():
         textbutton _("Load Game") action ShowMenu("load")
         textbutton _("Preferences") action ShowMenu("preferences")
         textbutton _("Help") action Help()
+        textbutton _("GitHub") action Jump("openwebsite")
+        textbutton _("Dev-Test") action If(config.developer, Jump("test"))
         textbutton _("Quit") action Quit(confirm=False)
 
 init -2:
