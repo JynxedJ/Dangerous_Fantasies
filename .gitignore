@@ -68,8 +68,8 @@ game/saves/
 game/cache/
 game/assets/
 game/sounds/
-game/images/*.xcf
-game/images/playeravatar.png
+game/images/
+game/images/originale/
 
 game/*.bak
 game/*.rpyb
