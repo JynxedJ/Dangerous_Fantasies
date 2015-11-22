@@ -9,3 +9,4 @@ label pov_askname:
 
 # Now the other characters in the game can greet the player.
 #   "example-> hello [pov_name]"
+    return

@@ -1,5 +1,5 @@
 label test:
-    call intro_end
+    call end
 
     call screen main_menu
     return

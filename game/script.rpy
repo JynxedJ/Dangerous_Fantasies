@@ -7,6 +7,7 @@ image bg logo = "logo.png"
 image bg bed = "bed.jpg"
 image bg stairs = "stairs.jpg"
 image bg mailman = "mailman.jpg"
+image bg bath = "bath.jpg"
 image side pov default = "avatar0.png"
 
 init:
@@ -28,47 +29,65 @@ label start:
     scene black with dissolve
     centered " Finally Weekend! \n\n If only that stupid noise would shut up "
     play sound "sounds/bell.mp3"
-    centered " Damnit.. That annoying Doorbell! \n\n Most likely the Mailman.. \n\n Got to get up "
+    centered " Damnit.. That annoying Doorbell! \n\n Most likely the Mailman.. "
     scene bg bed with dissolve
 
     menu:
         "I better go open that Door":
-            scene bg stairs with dissolve
-            play sound "sounds/bell.mp3"
-            pov "YES! I´M COMING!"
-            menu:
-                pov "Ouch! What the..."
-                "Reposition my Morning-Wood":
-                    $ pov_gender = "male"
-                "Fingercomb that knot in my Bedhair":
-                    $ pov_gender = "female"
-            call mailman
+            call mail_stairs
 
 #       TODO: add lazier path
-#        "Nope! I´ll keep hugging the Pillow to Death":
-#            jump end
+        "Nope! I´ll keep hugging the Pillow to Death":
+            play sound "sounds/bell.mp3"
+            menu:
+                "Oh well..":
+                    call mail_stairs
+                "NOPE! Fuck off..":
+                    jump end
+#
 
-    "Dressed in my Pyjamas I head downstairs"
 
 
+    call intro_end
     call end
     return
 
     
     
     
-    
-    
+label mail_stairs:
+    "Dressed in my Pyjamas I head downstairs"
+    with vpunch
+    scene bg stairs 
+    with dissolve
+    play sound "sounds/bell.mp3"
+    pov "YES! I´M COMING!"
+    with vpunch
+    call mailman
+    return
     
 label mailman:
     scene bg mailman with dissolve
     mailman "Hello, I´ve got some Mail for you. Just need you to sign here."
     call pov_askname
-    "It was quite a Challenge, but I managed to write my Name on his weird Handheld-Device"
-    "Noone will ever have a Reason to decipher the Scribbles to find out that it means '[pov_name]' \ninstead of AlkjD0voi VweidDnqle"
-    "Doesnt matter now anyway since I´ve got my Package.. Just got to hunt down some Scissors to open it"
+    pov avatar "It was quite a Challenge, but I managed to write my Name on his weird Handheld-Device"
+    pov "Noone will ever have a Reason to decipher the Scribbles to find out that it means '[pov_name]' \ninstead of AlkjD0voi VweidDnqle"
+    pov "Doesnt matter now anyway since I´ve got my Package.."
+    scene bg stairs with dissolve
+    pov "It should´ve been here yesterday, but now that I´ve got it im going to spend the whole Day reading the new Book in Bed"
+    pov "But first things first.. Off to the Toilet"
+    call toilet
     return
 
+label toilet:
+    scene bg bath with dissolve
+    menu:
+        "Just whip it out and aim":
+            $ pov_gender = "male"
+        "Sit down":
+            $ pov_gender = "male"
+    return
+    
 label intro_end:
     menu:
         "End of the Intro. Would you like to save the Character?"
@@ -79,13 +98,6 @@ label intro_end:
     return
 
 label end:
-    scene black with dissolve
-    centered "Congratz.. youve reached the end.. \n\n soory if it happened on an unfinished path.. this is still a work in progress \n\n\n If you like u can follow the Development on \n https://github.com/JynxedJ/Dangerous_Fantasies \n\n I´m using www.renpy.org ´s engine for this creation"
-
-    menu:
-        "open website":
-            call openwebsite
-        "dont":
-            "done"
-    
+    scene black
+    centered "  THE END  \n\n soory if it happened on an unfinished path.. this is still a work in progress \n If you like u can follow the Development on \n I´m using www.renpy.org ´s engine for this creation"
     return
