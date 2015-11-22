@@ -81,3 +81,5 @@ game/*.png
 game/*.mp3
 game/*.ogg
 game/*.xcf
+
+.travis.yml
