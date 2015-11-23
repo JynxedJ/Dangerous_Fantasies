@@ -9,7 +9,8 @@ check again later.. i promise i wont make u wait too long ;)
 
 
 if u have questions u can find me on [Freenode]
-irc://chat.freenode.net:6667/#cursedlib
+
+[irc://chat.freenode.net:6667/#cursedlib]
 
 
 
@@ -20,4 +21,11 @@ irc://chat.freenode.net:6667/#cursedlib
 Released under the following Creative Commons license:
 http://creativecommons.org/licenses/by-nc-sa/3.0/
 
+
+
+
+
+
+
 [Freenode]: http://webchat.freenode.net?nick=Sissy-.&channels=%23cursedlib&prompt=1
+[irc://chat.freenode.net:6667/#cursedlib]: irc://chat.freenode.net:6667/#cursedlib
