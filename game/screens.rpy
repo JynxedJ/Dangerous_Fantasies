@@ -97,8 +97,8 @@ init -2:
         clear
 
     style menu_choice_button is button:
-        xminimum int(config.screen_width * 0.75)
-        xmaximum int(config.screen_width * 0.75)
+        xminimum int(config.screen_width * 0.60)
+        xmaximum int(config.screen_width * 0.60)
 
 
 ##############################################################################
@@ -186,8 +186,8 @@ screen main_menu():
     # The main menu buttons.
     frame:
         style_group "mm"
-        xalign .98
-        yalign .98
+        xalign .94
+        yalign .94
 
         has vbox
 
@@ -222,8 +222,8 @@ screen navigation():
     # The various buttons.
     frame:
         style_group "gm_nav"
-        xalign .98
-        yalign .98
+        xalign .94
+        yalign .94
 
         has vbox
 

@@ -1,13 +1,15 @@
 ﻿# Declare characters used by this game.
-define pov = DynamicCharacter("pov_name", image="player", color="#D5A7B9")
-define narrator = Character(None, window_left_padding=160)
-define mailman = Character('Mailman', image="player", color="#c8ffc8")
+define pov = DynamicCharacter("pov_name", image="player", color="#6c4382")
+define narrator = Character(None, window_left_padding=155)
+define mailman = Character('Mailman', image="player", color="#aabcc4")
+define mom = Character('Mom', image="player", color="#FF1000")
 
 image bg logo = "logo.png"
 image bg bed = "bed.jpg"
 image bg stairs = "stairs.jpg"
 image bg mailman = "mailman.jpg"
 image bg bath = "bath.jpg"
+image phone = "phone.png"
 image side playeravatar = ConditionSwitch(
                     "pov_gender == 'male'", "avatarm0.png",
                     "pov_gender == 'female'", "avatarf0.png",
@@ -29,8 +31,23 @@ label splashscreen:
 label start:
     $ pov_name = ""
     $ pov_gender = ""
-    
+    $ pov_msgs = 1
+    $ pov_endearment = ""
+    $ pov_sissy = 0
+    $ mom_msgs = 0
+
     show bg logo with Pause (1)
+
+#   TODO: comment out this menu before compiling a release
+    menu:
+        "start game":
+            jump intro
+        "test":
+            jump test
+    return
+
+    
+label intro:
     scene black with dissolve
     centered " Finally Weekend! \n\n If only that stupid noise would shut up "
     play sound "sounds/bell.mp3"
@@ -56,8 +73,6 @@ label start:
     call intro_end
     call end
     return
-
-    
     
     
 label mail_stairs:
@@ -89,12 +104,36 @@ label toilet:
     menu:
         "Just whip it out and aim":
             $ pov_gender = "male"
-        "Sit down to pee":
-            $ pov_gender = "female"
-    pov playeravatar "player x"
+            $ pov_endearment = "Son"
+        "Sit down and check the Phone":
+            call phone
     return
     
     
+label phone:
+    show phone with dissolve
+    if pov_msgs == 0:
+        "No News or Messages.. Boring"
+    else:
+        menu:
+            "New Messages: [pov_msgs]":
+                if mom_msgs == 0:
+                    mom "G´Morning [pov_endearment]\nwhen are you coming over for Dinner tommorow?"
+                    $ pov_msgs -= 1
+                    $ mom_msgs += 1
+                    menu:
+                        "As ussual":
+                            $ pov_sissy -= 1
+                        "Sorry, I´m busy, I´ll have to skip it.":
+                            $ pov_sissy -= 2
+                        "Sorry, I´m busy, really miss you tho! Love you":
+                            $ pov_sissy += 1
+                        "I´ll be early, alright? Want to chat a little, but dont worry. Nothing serious is going on.":
+                            $ pov_sissy += 2
+            # TODO:
+            #"Social Media":
+            #"Google":
+    return
     
 label intro_end:
     menu:
@@ -107,6 +146,7 @@ label intro_end:
 
 label end:
     scene white
-    pov playeravatar " Variables: \n\nName: [pov_name]\nGender: [pov_gender]"
+    pov playeravatar " Variables: \n\nName: [pov_name]\nSissy: [pov_sissy]"
+    scene black
     centered "  THE END  \n\n soory if it happened on an unfinished path.. this is still a work in progress \n I´m using www.renpy.org ´s engine for this creation"
     return

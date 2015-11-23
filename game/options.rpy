@@ -23,12 +23,12 @@ init -1 python hide:
     ## This controls the title of the window, when Ren'Py is
     ## running in a window.
 
-    config.window_title = u"Dangerous_Fantasy"
+    config.window_title = u"Dangerous_Fantasies"
     config.window_icon = "icon.png"
     
     # These control the name and version of the game, that are reported
     # with tracebacks and other debugging logs.
-    config.name = "Dangerous_Fantasy"
+    config.name = "Dangerous_Fantasies"
     config.version = "0.1"
 
     #########################################
@@ -40,8 +40,8 @@ init -1 python hide:
     ## The theme function takes a number of parameters that can
     ## customize the color scheme.
 
-    theme.bordered(
-        ## Theme: Bordered
+    theme.roundrect(
+        ## Theme: Roundrect
         ## Color scheme: Cotton Candy
 
         ## The color of an idle widget face.
@@ -51,11 +51,11 @@ init -1 python hide:
         widget_hover = "#E1D4C9",
 
         ## The color of the text in a widget.
-        widget_text = "#805C40",
+        widget_text = "#6c4382",
 
         ## The color of the text in a selected widget. (For
         ## example, the current value of a preference.)
-        widget_selected = "#805C40",
+        widget_selected = "#6c4382",
 
         ## The color of a disabled widget face.
         disabled = "#C8AFA1",
@@ -64,7 +64,7 @@ init -1 python hide:
         disabled_text = "#E1D4C9",
 
         ## The color of informational labels.
-        label = "#805C40",
+        label = "#6c4382",
 
         ## The color of a frame containing widgets.
         frame = "#FCF5F2",
@@ -72,15 +72,13 @@ init -1 python hide:
         ## The background of the main menu. This can be a color
         ## beginning with '#', or an image filename. The latter
         ## should take up the full height and width of the screen.
-        #mm_root = "#D0B4BA",
-        mm_root ="images/logo.png",
-        
+        mm_root = "images/logo.png",
+
         ## The background of the game menu. This can be a color
         ## beginning with '#', or an image filename. The latter
         ## should take up the full height and width of the screen.
-        #gm_root = "#D0B4BA",
-        gm_root ="images/logo.png",
-        
+        gm_root = "images/logo.png",
+
         ## If this is True, the in-game window is rounded. If False,
         ## the in-game window is square.
         rounded_window = False,
@@ -112,7 +110,7 @@ init -1 python hide:
     ## Padding is space inside the window, where the background is
     ## drawn.
 
-    style.window.left_padding = 150
+    style.window.left_padding = 155
     # style.window.right_padding = 6
     # style.window.top_padding = 6
     # style.window.bottom_padding = 6
@@ -153,6 +151,7 @@ init -1 python hide:
     ## The default size of text.
 
     style.default.size = 22
+    style.default.color = "#eac9dc"
 
     ## Note that these only change the size of some of the text. Other
     ## buttons have their own styles.
