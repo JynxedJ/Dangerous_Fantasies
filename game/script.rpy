@@ -39,15 +39,19 @@ label start:
     $ pov_endearment = ""
     $ pov_sissy = 0
     $ mom_msgs = 0
+    $ pov_media = ""
+    $ random_num = renpy.random.randint(1,100)
 
     show bg logo with Pause (1)
 
 #   TODO: comment out this menu before compiling a release
     menu:
         "start game":
-            jump intro
+            pass
         "test":
-            jump test
+            call startreading
+            jump end
+    jump intro
     return
 
     
@@ -65,6 +69,8 @@ label intro:
             call toilet
             call unpack
             call kitchen
+            call stairs
+            call startreading
 
         "Nope! I´ll keep hugging the Pillow to Death":
             play sound "sounds/bell.mp3"
@@ -75,6 +81,9 @@ label intro:
                     call toilet
                     call unpack
                     call kitchen
+                    call stairs
+                    call startreading
+                    
                 "NOPE! Fuck off..":
                     call gnight
                     call gmorning
@@ -83,6 +92,9 @@ label intro:
                     call nomailman
                     call unpack
                     call kitchen
+                    call stairs
+                    call startreading
+                    
     call intro_end
     call end
     return
@@ -90,6 +102,8 @@ label intro:
 label gnight:
     scene black with dissolve
     call pov_sissy
+    pov playeravatar "ZzZz..."
+    pov playeravatar "ZzZzZzZz..."
     pov playeravatar "ZzZzZzZzZzZz..."
     return
     
@@ -108,8 +122,8 @@ label mail_stairs:
     
 label stairs:
     scene bg stairs with dissolve
-    with Pause(1)
     with vpunch
+    with Pause(1)
     return
     
 label mailman:
@@ -126,8 +140,9 @@ label mailman:
     return
 
 label nomailman:
-    scene bg frontdoor with dissolve
     call pov_sissy
+    pov playeravatar "Better check the Mail. It was probably that Mailman that woke me earlier."
+    scene bg frontdoor with dissolve
     pov playeravatar "Finally it´s here. The Package should´ve arrived yesterday."
     return
     
@@ -155,20 +170,28 @@ label unpack:
             $ pov_sissy -= 2
         "No need to make a mess. Use Scissors.":
             $ pov_sissy += 2
+    with hpunch
+    call pov_sissy
+    if pov_sissy <= 0:
+        pov playeravatar "Are you kidding me? They send the wrong Book!\nThis looks like a Romance or Drama Story."
+        $ pov_media = "wrong book"
+    else:
+        pov playeravatar "Perfect! Just need some Food and then I´ll start reading it."
+        $ pov_media = "lovestory"
     return
     
 label kitchen:
     scene bg kitchen with dissolve
     call pov_sissy
-    pov playeravatar "Hmm.. Breakfast.. or just Snack?"
+    pov playeravatar "Hmm.. Breakfast.. or just Snack?\nWhat do i eat?"
     menu:
-        "Chips" if pov_sissy <=0:
+        "Chips" if pov_sissy <= -1:
             $ pov_sissy -= 3
         "Eggs and Bacon":
             $ pov_sissy -= 2
         " Make a Sandwich":
             $ pov_sissy -= 2
-        "Smoothie" if pov_sissy >= 0:
+        "Smoothie" if pov_sissy >= 1:
             $ pov_sissy += 5
         "Jogurt":
             $ pov_sissy += 3
@@ -176,8 +199,23 @@ label kitchen:
             $ pov_sissy += 2
         "Something Sweet":
             $ pov_sissy += 2
+    call pov_sissy
+    pov playeravatar "Nom Nom Nom..."
     return
-
+    
+label startreading:
+    scene bg bed with dissolve
+    call pov_sissy
+    if pov_media == "lovestory":
+        pov playeravatar "start reading"
+    elif pov_media == "wrong book":
+        pov playeravatar "Real Pity i got the wrong one.. should i read it anyway?"
+        menu:
+            "Give the Book a chance..":
+                pov playeravatar "Maybe it doesnt suck too badly.."
+            #TODO: play computer game (with female protagonist?!)
+    return
+    
 label intro_end:
     menu:
         "End of the Intro. Would you like to save the Character?"
@@ -208,6 +246,11 @@ label phone:
                         "I´ll be early, alright?\nWant to chat a little, but dont worry.\nNothing serious is going on.":
                             $ pov_sissy += 4
                     call pov_sissy
+            "Take a Selfie to check your Look" if pov_sissy <= -1:
+                $ pov_sissy -= 3
+                call pov_sissy
+                pov avatar "Yup, I look fabulous!"
+                
             # TODO:
             #"Social Media":
             #"Google":
@@ -215,6 +258,7 @@ label phone:
     return
     
 label end:
+#   TODO: comment out before compiling a release
     scene white
     pov playeravatar " Variables: \n\nName: [pov_name]\nSissy-Score: [pov_sissy]"
     scene black
