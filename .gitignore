@@ -74,7 +74,9 @@ game/images/originale/
 
 game/*.bak
 game/*.rpyb
+game/dse/*.rpyb
 game/*.rpyc
+game/dse/*.rpyc
 game/*.ico
 game/*.jpg
 game/*.jpeg

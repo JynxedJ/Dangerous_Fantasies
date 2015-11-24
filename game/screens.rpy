@@ -371,6 +371,15 @@ screen preferences():
                 label _("Transitions")
                 textbutton _("All") action Preference("transitions", "all")
                 textbutton _("None") action Preference("transitions", "none")
+                
+            frame:
+                style_group "pref"
+                has vbox
+
+                label _("NSFW Content")
+                textbutton _("Enabled") action SetField(persistent, "nsfw", True)
+                textbutton _("Disabled") action SetField(persistent, "nsfw", False)
+
 
             frame:
                 style_group "pref"

@@ -5,7 +5,8 @@ define mailman = Character('Mailman', image="player", color="#aabcc4")
 define mom = Character('Mom', image="player", color="#FF1000")
 
 image bg logo = "logo.png"
-image bg bed = "bed.jpg"
+image bg bed = "bed.png"
+image bg bed_night = "bed2.png"
 image bg stairs = "stairs.jpg"
 image bg mailman = "mailman.jpg"
 image bg bath = "bath.jpg"
@@ -23,6 +24,12 @@ init:
     image black = Solid((0, 0, 0, 255))
     image white = Solid((255, 255, 255, 255))
     image grey = Solid((128, 128, 128, 255))
+    
+init python:
+
+    # Set the default value.
+    if persistent.nsfw is None:
+        persistent.nsfw = False
 
 # This is the splash screen. Should show my logo
 label splashscreen:
@@ -33,6 +40,7 @@ label splashscreen:
 
 # The game starts here.
 label start:
+    $ daynames = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     $ pov_name = ""
     $ pov_gender = ""
     $ pov_msgs = 1
@@ -45,12 +53,16 @@ label start:
     show bg logo with Pause (1)
 
 #   TODO: comment out this menu before compiling a release
+#
+#
     menu:
         "start game":
             pass
         "test":
-            call startreading
-            jump end
+            jump start1
+#
+#
+#
     jump intro
     return
 
@@ -70,7 +82,6 @@ label intro:
             call unpack
             call kitchen
             call stairs
-            call startreading
 
         "Nope! I´ll keep hugging the Pillow to Death":
             play sound "sounds/bell.mp3"
@@ -82,7 +93,6 @@ label intro:
                     call unpack
                     call kitchen
                     call stairs
-                    call startreading
                     
                 "NOPE! Fuck off..":
                     call gnight
@@ -93,7 +103,6 @@ label intro:
                     call unpack
                     call kitchen
                     call stairs
-                    call startreading
                     
     call intro_end
     call end
@@ -151,10 +160,15 @@ label toilet:
     menu:
         "Just whip it out and aim":
             $ pov_sissy -= 2
-            call pov_sissy
-        "Sit down and check the Phone":
+        "Sit down to do the business":
             $ pov_sissy += 1
-            call phone
+            menu:
+                "Hurry and get it over with.":
+                    pass
+                "Time to check the Phone.":
+                    $ pov_sissy += 1
+                    call phone
+    call pov_sissy
     return
     
 label unpack:
@@ -163,7 +177,7 @@ label unpack:
     scene bg livingroom with dissolve
     show package at right with dissolve
     if pov_name == "":
-        "Looks a little big, but here it says that it´s for me."
+        "Looks a little big, but looks like it´s addressed to me."
         call pov_askname
     menu:
         "Just rip it open...":
@@ -200,7 +214,7 @@ label kitchen:
         "Something Sweet":
             $ pov_sissy += 2
     call pov_sissy
-    pov playeravatar "Nom Nom Nom..."
+    pov playeravatar "Good.. I´m not going to get out off bed again without a damn good Reason."
     return
     
 label startreading:

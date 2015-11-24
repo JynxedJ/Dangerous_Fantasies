@@ -6,7 +6,7 @@ label pov_askname:
     return
     
 label pov_sissy:
-    if pov_sissy <= 0:
+    if pov_sissy <= -1:
         $ pov_gender = "male"
         $ pov_endearment = "Son"
     elif pov_sissy >= 1:
