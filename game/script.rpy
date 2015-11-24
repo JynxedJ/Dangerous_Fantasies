@@ -13,6 +13,7 @@ image bg bath = "bath.jpg"
 image bg kitchen = "kitchen.jpg"
 image bg livingroom = "livingroom.jpg"
 image bg frontdoor = "frontdoor.jpg"
+image bg book = "book.jpg"
 image phone = "phone.png"
 image package = "package.png"
 image side playeravatar = ConditionSwitch(
@@ -50,7 +51,7 @@ label start:
     $ pov_media = ""
     $ random_num = renpy.random.randint(1,100)
 
-    show bg logo with Pause (1)
+    show bg logo with Pause(1)
 
 #   TODO: comment out this menu before compiling a release
 #
@@ -82,6 +83,7 @@ label intro:
             call unpack
             call kitchen
             call stairs
+            call startreading
 
         "Nope! I´ll keep hugging the Pillow to Death":
             play sound "sounds/bell.mp3"
@@ -93,6 +95,7 @@ label intro:
                     call unpack
                     call kitchen
                     call stairs
+                    call startreading
                     
                 "NOPE! Fuck off..":
                     call gnight
@@ -103,6 +106,7 @@ label intro:
                     call unpack
                     call kitchen
                     call stairs
+                    call startreading
                     
     call intro_end
     call end
@@ -110,7 +114,6 @@ label intro:
     
 label gnight:
     scene black with dissolve
-    call pov_sissy
     pov playeravatar "ZzZz..."
     pov playeravatar "ZzZzZzZz..."
     pov playeravatar "ZzZzZzZzZzZz..."
@@ -118,21 +121,20 @@ label gnight:
     
 label gmorning:
     scene bg bed with dissolve
-    call pov_sissy
     pov playeravatar "Damn you Light.. and Blatter.."
     return
     
 label mail_stairs:
-    narrator "Dressed in my Pyjamas I head downstairs"
+    pov playeravatar "Dressed in my Pyjamas I head downstairs"
     call stairs
     play sound "sounds/bell.mp3"
-    narrator "YES! I´M COMING!"
+    pov playeravatar "YES! I´M COMING!"
     return
     
 label stairs:
     scene bg stairs with dissolve
     with vpunch
-    with Pause(1)
+    with Pause(2.5)
     return
     
 label mailman:
@@ -159,16 +161,15 @@ label toilet:
     scene bg bath with dissolve
     menu:
         "Just whip it out and aim":
-            $ pov_sissy -= 2
+            $ pov_sissy -= 1
         "Sit down to do the business":
             $ pov_sissy += 1
             menu:
                 "Hurry and get it over with.":
-                    pass
+                    $ pov_sissy -= 1
                 "Time to check the Phone.":
                     $ pov_sissy += 1
                     call phone
-    call pov_sissy
     return
     
 label unpack:
@@ -181,9 +182,9 @@ label unpack:
         call pov_askname
     menu:
         "Just rip it open...":
-            $ pov_sissy -= 2
+            $ pov_sissy -= 1
         "No need to make a mess. Use Scissors.":
-            $ pov_sissy += 2
+            $ pov_sissy += 1
     with hpunch
     call pov_sissy
     if pov_sissy <= 0:
@@ -199,35 +200,38 @@ label kitchen:
     call pov_sissy
     pov playeravatar "Hmm.. Breakfast.. or just Snack?\nWhat do i eat?"
     menu:
-        "Chips" if pov_sissy <= -1:
+        "Bacon with Bacon (and Eggs)" if pov_sissy <= -2:
             $ pov_sissy -= 3
-        "Eggs and Bacon":
+        "Chips" if pov_sissy <= 0:
             $ pov_sissy -= 2
-        " Make a Sandwich":
-            $ pov_sissy -= 2
-        "Smoothie" if pov_sissy >= 1:
+        "Sandwich" if pov_sissy <= 3:
+            $ pov_sissy -= 1
+        "Smoothie" if pov_sissy >= 3:
             $ pov_sissy += 5
-        "Jogurt":
+        "Jogurt" if pov_sissy >= 0:
             $ pov_sissy += 3
-        "Some random Fruit":
-            $ pov_sissy += 2
+        "Some Fruit":
+            $ pov_sissy += 1
         "Something Sweet":
-            $ pov_sissy += 2
+            $ pov_sissy += 1
     call pov_sissy
     pov playeravatar "Good.. I´m not going to get out off bed again without a damn good Reason."
     return
     
 label startreading:
     scene bg bed with dissolve
-    call pov_sissy
     if pov_media == "lovestory":
-        pov playeravatar "start reading"
+        call startbook
     elif pov_media == "wrong book":
         pov playeravatar "Real Pity i got the wrong one.. should i read it anyway?"
         menu:
             "Give the Book a chance..":
+                $ pov_sissy += 2
+                call pov_sissy
                 pov playeravatar "Maybe it doesnt suck too badly.."
+                call startbook
             #TODO: play computer game (with female protagonist?!)
+    with Pause(1.5)
     return
     
 label intro_end:
@@ -252,18 +256,18 @@ label phone:
                     $ mom_msgs += 1
                     menu:
                         "As ussual":
-                            $ pov_sissy -= 2
+                            $ pov_sissy -= 3
                         "Sorry, I´m busy, I´ll have to skip it.":
                             $ pov_sissy -= 2
                         "Sorry, I´m busy, really miss you tho! Love you":
-                            $ pov_sissy += 3
+                            $ pov_sissy += 2
                         "I´ll be early, alright?\nWant to chat a little, but dont worry.\nNothing serious is going on.":
-                            $ pov_sissy += 4
+                            $ pov_sissy += 3
                     call pov_sissy
-            "Take a Selfie to check your Look" if pov_sissy <= -1:
-                $ pov_sissy -= 3
+            "Take a Selfie to check your Look" if pov_sissy >= 2:
+                $ pov_sissy += 2
                 call pov_sissy
-                pov avatar "Yup, I look fabulous!"
+                pov playeravatar "Yup, I look fabulous!"
                 
             # TODO:
             #"Social Media":
@@ -271,9 +275,15 @@ label phone:
             #"make selfie to check look" pov_sissy +++
     return
     
+label startbook:
+    scene bg book with dissolve
+    pov playeravatar "HERE THE BOOK SHOULD START!!!!!!!!!!!!!!!!!!!!!"
+    return
+    
 label end:
 #   TODO: comment out before compiling a release
     scene white
+    call pov_sissy
     pov playeravatar " Variables: \n\nName: [pov_name]\nSissy-Score: [pov_sissy]"
     scene black
     centered "  THE END  \n\n soory if it happened on an unfinished path.. this is still a work in progress \n I´m using www.renpy.org ´s engine for this creation"

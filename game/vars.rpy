@@ -2,7 +2,7 @@ label pov_askname:
     $ pov_name = renpy.input("Recipient:")
     $ pov_name = pov_name.strip()
     if pov_name == "":
-        $ pov_name="Michael"
+        $ pov_name="Mika"
     return
     
 label pov_sissy:
