@@ -233,6 +233,7 @@ screen navigation():
         textbutton _("Load Game") action ShowMenu("load")
         textbutton _("Main Menu") action MainMenu()
         textbutton _("Help") action Help()
+        textbutton _("GitHub") action Jump("openwebsite")
         textbutton _("Quit") action Quit()
 
 init -2:

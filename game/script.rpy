@@ -1,8 +1,8 @@
 ﻿# Declare characters used by this game.
 define pov = DynamicCharacter("pov_name", image="player", color="#6c4382")
 define narrator = Character(None, window_left_padding=155)
-define mailman = Character('Mailman', image="player", color="#aabcc4")
-define mom = Character('Mom', image="player", color="#FF1000")
+define mailman = Character('Mailman', image="mailman", color="#aabcc4")
+define mom = Character('Mom', image="mom", color="#FF1000")
 
 image bg logo = "logo.png"
 image bg bed = "bed.png"
@@ -27,8 +27,6 @@ init:
     image grey = Solid((128, 128, 128, 255))
     
 init python:
-
-    # Set the default value.
     if persistent.nsfw is None:
         persistent.nsfw = False
 
