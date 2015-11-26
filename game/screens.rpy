@@ -372,7 +372,7 @@ screen preferences():
                 label _("Transitions")
                 textbutton _("All") action Preference("transitions", "all")
                 textbutton _("None") action Preference("transitions", "none")
-                
+
             frame:
                 style_group "pref"
                 has vbox
@@ -582,4 +582,4 @@ screen noinput():
     key "K_RETURN" action NullAction()
     key "K_SPACE" action NullAction()
     key "K_KP_ENTER" action NullAction()
-    key "joy_dismiss" action NullAction()  
+    key "joy_dismiss" action NullAction()

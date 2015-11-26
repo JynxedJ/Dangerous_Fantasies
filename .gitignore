@@ -60,7 +60,8 @@ target/
 
 
 #game specific
-
+*.sublime-project
+*.sublime-workspace
 *.txt
 
 tmp/
