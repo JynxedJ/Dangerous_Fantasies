@@ -17,8 +17,8 @@ image bg book           = "book.jpg"
 image phone             = "phone.png"
 image package           = "package.png"
 image side playeravatar = ConditionSwitch(
-                            "pov_gender == 'male'", "avatarm0.png",
-                            "pov_gender == 'female'", "avatarf0.png",
+                            "pov_gender == 'Male'", "avatarm0.png",
+                            "pov_gender == 'Female'", "avatarf0.png",
                             "True", "avatar0.png")
 
 init:
@@ -39,9 +39,8 @@ label splashscreen:
 
 # The game starts here.
 label start:
-    $ daynames       = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     $ pov_name       = ""
-    $ pov_gender     = ""
+    $ pov_gender     = "Male"
     $ pov_msgs       = 1
     $ pov_endearment = ""
     $ pov_sissy      = 0
@@ -55,8 +54,10 @@ label start:
     menu:
         "start game":
             pass
-        "test":
+        "dse_test":
             jump start1
+        "test2":
+            jump test
 
     jump intro
     return

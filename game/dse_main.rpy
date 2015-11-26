@@ -4,8 +4,12 @@
 
 # Set up a default schedule.
 init python:
-    register_stat("Strength", "strength", 10, 100)
-    register_stat("Intelligence", "intelligence", 10, 100)
+    register_stat("Strength", "strength", 0, 100)
+    register_stat("Endurance", "endurance", 0, 100)
+    register_stat("Charisma", "charisma", 0, 100)
+    register_stat("Intelligence", "intelligence", 0, 100)
+    register_stat("Agility", "agility", 0, 100)
+    register_stat("Luck", "luck", 0, 100)
 
     dp_period("Morning", "morning_act")
     dp_choice("Attend Class", "class")
@@ -28,7 +32,8 @@ label start1:
 
     # Initialize the default values of some of the variables used in
     # the game.
-    $ day = 4
+    $ day      = 4
+    $ daynames = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 
     # Show a default background.
     scene black

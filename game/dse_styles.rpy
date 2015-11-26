@@ -3,8 +3,9 @@
 
 # Place the day planner.
 style dp_frame:
-    ypos 120
-    yanchor 0.0
+    #ypos 120
+    #yanchor 0.0
+    yalign 0.7
     xalign 0.5
     
 # Spacing betweeen the choices and the done button.    
