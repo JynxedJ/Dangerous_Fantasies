@@ -1,30 +1,30 @@
 ﻿# Declare characters used by this game.
-define pov = DynamicCharacter("pov_name", image="player", color="#6c4382")
+define pov      = DynamicCharacter("pov_name", image="player", color="#6c4382")
 define narrator = Character(None, window_left_padding=155)
-define mailman = Character('Mailman', image="mailman", color="#aabcc4")
-define mom = Character('Mom', image="mom", color="#FF1000")
+define mailman  = Character('Mailman', image="mailman", color="#aabcc4")
+define mom      = Character('Mom', image="mom", color="#FF1000")
 
-image bg logo = "logo.png"
-image bg bed = "bed.png"
-image bg bed_night = "bed2.png"
-image bg stairs = "stairs.jpg"
-image bg mailman = "mailman.jpg"
-image bg bath = "bath.jpg"
-image bg kitchen = "kitchen.jpg"
-image bg livingroom = "livingroom.jpg"
-image bg frontdoor = "frontdoor.jpg"
-image bg book = "book.jpg"
-image phone = "phone.png"
-image package = "package.png"
+image bg logo           = "logo.png"
+image bg bed            = "bed.png"
+image bg bed_night      = "bed2.png"
+image bg stairs         = "stairs.jpg"
+image bg mailman        = "mailman.jpg"
+image bg bath           = "bath.jpg"
+image bg kitchen        = "kitchen.jpg"
+image bg livingroom     = "livingroom.jpg"
+image bg frontdoor      = "frontdoor.jpg"
+image bg book           = "book.jpg"
+image phone             = "phone.png"
+image package           = "package.png"
 image side playeravatar = ConditionSwitch(
-                    "pov_gender == 'male'", "avatarm0.png",
-                    "pov_gender == 'female'", "avatarf0.png",
-                    "True", "avatar0.png")
+                            "pov_gender == 'male'", "avatarm0.png",
+                            "pov_gender == 'female'", "avatarf0.png",
+                            "True", "avatar0.png")
 
 init:
     image black = Solid((0, 0, 0, 255))
     image white = Solid((255, 255, 255, 255))
-    image grey = Solid((128, 128, 128, 255))
+    image grey  = Solid((128, 128, 128, 255))
     
 init python:
     if persistent.nsfw is None:
@@ -39,29 +39,25 @@ label splashscreen:
 
 # The game starts here.
 label start:
-    $ daynames = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-    $ pov_name = ""
-    $ pov_gender = ""
-    $ pov_msgs = 1
+    $ daynames       = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    $ pov_name       = ""
+    $ pov_gender     = ""
+    $ pov_msgs       = 1
     $ pov_endearment = ""
-    $ pov_sissy = 0
-    $ mom_msgs = 0
-    $ pov_media = ""
-    $ random_num = renpy.random.randint(1,100)
+    $ pov_sissy      = 0
+    $ mom_msgs       = 0
+    $ pov_media      = ""
+    $ random_num     = renpy.random.randint(1,100)
 
     show bg logo with Pause(1)
 
-#   TODO: comment out this menu before compiling a release
-#
-#
+    #TODO: comment out this menu before compiling a release
     menu:
         "start game":
             pass
         "test":
             jump start1
-#
-#
-#
+
     jump intro
     return
 
@@ -279,10 +275,10 @@ label startbook:
     return
     
 label end:
-#   TODO: comment out before compiling a release
+    #TODO: comment out before compiling a release
     scene white
     call pov_sissy
     pov playeravatar " Variables: \n\nName: [pov_name]\nSissy-Score: [pov_sissy]"
     scene black
-    centered "  THE END  \n\n soory if it happened on an unfinished path.. this is still a work in progress \n I´m using www.renpy.org ´s engine for this creation"
+    centered "  THE END  \n\n soory if it happened on an unfinished path.. this is still a work in progress \n I´m using www.renpy.org for this creation"
     return
