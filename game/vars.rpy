@@ -26,3 +26,4 @@ label pov_gender:
         $ pov_gender = "Male"
     else:
         $ pov_gender = "Error"
+    call screen day_planner([ ])

@@ -59,9 +59,7 @@ screen display_stats(name=True, bar=True, value=True, max=True):
             xalign 0.5
             label "Statistics" xalign 0.5
 
-            #button:
-            #    xalign 0.5
-            #    textbutton ("[pov_gender]") action Jump("pov_gender")
+            textbutton _("[pov_gender]") action Jump("pov_gender") xalign 0.5
 
             grid 3 dse_stat_length:
                 xalign 0.5

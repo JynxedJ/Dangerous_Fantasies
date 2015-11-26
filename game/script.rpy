@@ -1,8 +1,8 @@
 ﻿# Declare characters used by this game.
-define pov      = DynamicCharacter("pov_name", image="player", color="#6c4382")
+define pov      = DynamicCharacter("pov_name", image="player", color="#6c4382", show_two_window=True)
 define narrator = Character(None, window_left_padding=155)
-define mailman  = Character('Mailman', image="mailman", color="#aabcc4")
-define mom      = Character('Mom', image="mom", color="#FF1000")
+define mailman  = Character('Mailman', image="mailman", color="#aabcc4", show_two_window=True)
+define mom      = Character('Mom', image="mom", color="#FF1000", show_two_window=True)
 
 image bg logo           = "logo.png"
 image bg bed            = "bed.png"
