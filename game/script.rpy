@@ -64,9 +64,9 @@ label start:
     
 label intro:
     scene black with dissolve
-    centered " Finally Weekend! \n\n If only that stupid noise would shut up "
+    centered "Finally Weekend! \n\n If only that stupid noise would shut up"
     play sound "sounds/bell.mp3"
-    centered " Damnit.. That annoying Doorbell! \n\n Most likely the Mailman.. "
+    centered "Damnit.. That annoying Doorbell! \n\n Most likely the Mailman.."
     scene bg bed with dissolve
 
     menu:
